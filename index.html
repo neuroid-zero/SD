@@ -1,0 +1,1283 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guia Completo de Prompt Engineering para SDXL no ComfyUI</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-magic"></i>
+                    <h1>Prompt Engineering SDXL</h1>
+                </div>
+                <nav class="nav">
+                    <button class="nav-toggle" id="navToggle">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                    <ul class="nav-menu" id="navMenu">
+                        <li><a href="#intro" class="nav-link">Introdução</a></li>
+                        <li><a href="#setup" class="nav-link">Configuração</a></li>
+                        <li><a href="#prompts" class="nav-link">Prompts</a></li>
+                        <li><a href="#advanced" class="nav-link">Avançado</a></li>
+                        <li><a href="#resources" class="nav-link">Recursos</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1 class="hero-title">
+                        Guia Completo de <span class="gradient-text">Prompt Engineering</span> para SDXL no ComfyUI
+                    </h1>
+                    <p class="hero-subtitle">
+                        Seu Manual Definitivo para Criar Imagens Fotorrealistas Incríveis com Inteligência Artificial - Uma Jornada para Iniciantes Totais
+                    </p>
+                    <div class="hero-buttons">
+                        <button class="btn btn-primary" onclick="scrollToSection('intro')">
+                            <i class="fas fa-play"></i>
+                            Começar Agora
+                        </button>
+                        <button class="btn btn-secondary" onclick="scrollToSection('resources')">
+                            <i class="fas fa-download"></i>
+                            Recursos
+                        </button>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="floating-card">
+                        <i class="fas fa-brain"></i>
+                        <h3>IA Generativa</h3>
+                    </div>
+                    <div class="floating-card">
+                        <i class="fas fa-image"></i>
+                        <h3>SDXL</h3>
+                    </div>
+                    <div class="floating-card">
+                        <i class="fas fa-code-branch"></i>
+                        <h3>ComfyUI</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Table of Contents -->
+    <section class="toc">
+        <div class="container">
+            <h2 class="section-title">Índice do Guia</h2>
+            <div class="toc-grid">
+                <div class="toc-item" onclick="scrollToSection('intro')">
+                    <div class="toc-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3>0. Boas-Vindas ao Universo da IA</h3>
+                    <p>Introdução à IA Generativa, SDXL e ComfyUI</p>
+                </div>
+                <div class="toc-item" onclick="scrollToSection('setup')">
+                    <div class="toc-icon">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h3>1. Montando Seu Primeiro Estúdio</h3>
+                    <p>Configuração e geração no ComfyUI</p>
+                </div>
+                <div class="toc-item" onclick="scrollToSection('prompts')">
+                    <div class="toc-icon">
+                        <i class="fas fa-language"></i>
+                    </div>
+                    <h3>2. A Linguagem Secreta da IA</h3>
+                    <p>Anatomia de um prompt eficaz</p>
+                </div>
+                <div class="toc-item" onclick="scrollToSection('quality')">
+                    <div class="toc-icon">
+                        <i class="fas fa-gem"></i>
+                    </div>
+                    <h3>3. Refinando a Obra</h3>
+                    <p>Qualidade e realismo em suas imagens</p>
+                </div>
+                <div class="toc-item" onclick="scrollToSection('camera')">
+                    <div class="toc-icon">
+                        <i class="fas fa-camera"></i>
+                    </div>
+                    <h3>4. A Visão do Artista</h3>
+                    <p>Câmera e composição para iniciantes</p>
+                </div>
+                <div class="toc-item" onclick="scrollToSection('lighting')">
+                    <div class="toc-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h3>5. Pintando com a Luz</h3>
+                    <p>Dominando a iluminação profissional</p>
+                </div>
+                <div class="toc-item" onclick="scrollToSection('facial')">
+                    <div class="toc-icon">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <h3>6. A Expressão da Alma</h3>
+                    <p>Detalhamento facial e corporal</p>
+                </div>
+                <div class="toc-item" onclick="scrollToSection('negative')">
+                    <div class="toc-icon">
+                        <i class="fas fa-ban"></i>
+                    </div>
+                    <h3>7. O Poder do "Não"</h3>
+                    <p>Dominando os prompts negativos</p>
+                </div>
+                <div class="toc-item" onclick="scrollToSection('style')">
+                    <div class="toc-icon">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <h3>8. A Assinatura do Artista</h3>
+                    <p>Controle de estilo e referências</p>
+                </div>
+                <div class="toc-item" onclick="scrollToSection('advanced')">
+                    <div class="toc-icon">
+                        <i class="fas fa-sliders-h"></i>
+                    </div>
+                    <h3>9. Além do Básico</h3>
+                    <p>Técnicas avançadas de controle</p>
+                </div>
+                <div class="toc-item" onclick="scrollToSection('technical')">
+                    <div class="toc-icon">
+                        <i class="fas fa-microchip"></i>
+                    </div>
+                    <h3>10. Os Motores da Criação</h3>
+                    <p>Parâmetros técnicos no ComfyUI</p>
+                </div>
+                <div class="toc-item" onclick="scrollToSection('complementary')">
+                    <div class="toc-icon">
+                        <i class="fas fa-puzzle-piece"></i>
+                    </div>
+                    <h3>11. Além do Prompt</h3>
+                    <p>Técnicas complementares avançadas</p>
+                </div>
+                <div class="toc-item" onclick="scrollToSection('resources')">
+                    <div class="toc-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>12. Recursos e Comunidade</h3>
+                    <p>Continue aprendendo e criando</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Chapter 0: Introduction -->
+            <section id="intro" class="chapter">
+                <div class="chapter-header">
+                    <div class="chapter-number">0</div>
+                    <div class="chapter-info">
+                        <h2 class="chapter-title">Boas-Vindas ao Universo da Criação com IA</h2>
+                        <p class="chapter-subtitle">Seu Primeiro Passo no ComfyUI</p>
+                    </div>
+                </div>
+                
+                <div class="chapter-content">
+                    <div class="welcome-message">
+                        <i class="fas fa-graduation-cap"></i>
+                        <p>Olá, futuro(a) artista digital! Seja muito bem-vindo(a) a esta jornada fascinante pelo mundo da <strong>Inteligência Artificial Generativa</strong>. Eu serei seu professor e guia nesta aventura, e juntos vamos desvendar os segredos para criar imagens espetaculares, mesmo que você nunca tenha tocado em um programa de edição antes.</p>
+                    </div>
+
+                    <div class="info-cards">
+                        <div class="info-card">
+                            <div class="card-icon">
+                                <i class="fas fa-brain"></i>
+                            </div>
+                            <h3>O Que é a IA Generativa?</h3>
+                            <p>Imagine a Inteligência Artificial (IA) como um <strong>pintor digital incrivelmente talentoso, mas que precisa de instruções muito claras</strong> para transformar suas ideias em obras de arte. Essa é a IA Generativa: ela não apenas reconhece padrões, mas <em>cria</em> algo novo a partir do zero, baseada nas suas orientações.</p>
+                        </div>
+
+                        <div class="info-card">
+                            <div class="card-icon">
+                                <i class="fas fa-magic"></i>
+                            </div>
+                            <h3>SDXL - Seu Pincel Mágico</h3>
+                            <p>Pense no SDXL como a <strong>paleta de cores e os pincéis mais avançados</strong> que nosso pintor digital possui. É uma versão superpoderosa do Stable Diffusion, especialmente desenvolvida para gerar imagens com um nível de detalhe e realismo impressionante.</p>
+                        </div>
+
+                        <div class="info-card">
+                            <div class="card-icon">
+                                <i class="fas fa-code-branch"></i>
+                            </div>
+                            <h3>ComfyUI - Seu Estúdio Digital</h3>
+                            <p>Se o SDXL é a paleta, o ComfyUI é o <strong>estúdio de arte completo</strong> onde você vai trabalhar. Ele permite organizar suas instruções (os famosos <em>prompts</em>) como se estivesse montando um quebra-cabeça visual.</p>
+                        </div>
+                    </div>
+
+                    <div class="analogy-box">
+                        <div class="analogy-icon">
+                            <i class="fas fa-music"></i>
+                        </div>
+                        <div class="analogy-content">
+                            <h4>Analogia do Maestro</h4>
+                            <p>Pense na IA como uma orquestra poderosa, com muitos músicos talentosos (os algoritmos). Você, como o <strong>maestro</strong>, precisa dar as instruções precisas (o prompt) para que cada instrumento toque no momento certo e com a intensidade desejada. Quanto mais claras e detalhadas suas instruções, mais bela e harmoniosa será a sinfonia (a imagem gerada).</p>
+                        </div>
+                    </div>
+
+                    <div class="glossary">
+                        <h3><i class="fas fa-book"></i> Glossário Básico do Artista Digital</h3>
+                        <div class="glossary-grid">
+                            <div class="glossary-item">
+                                <strong>Prompt:</strong> A frase ou conjunto de palavras que descreve a imagem que você deseja que a IA crie. É a sua "instrução mágica".
+                            </div>
+                            <div class="glossary-item">
+                                <strong>ComfyUI:</strong> A interface visual onde você vai montar seus "fluxogramas" de criação.
+                            </div>
+                            <div class="glossary-item">
+                                <strong>Nó (Node):</strong> Cada "bloco" ou "caixa" no ComfyUI que representa uma função específica.
+                            </div>
+                            <div class="glossary-item">
+                                <strong>Workflow:</strong> O conjunto de nós conectados que define o processo completo de geração de uma imagem.
+                            </div>
+                            <div class="glossary-item">
+                                <strong>SDXL:</strong> O modelo de IA que usaremos para gerar as imagens de alta qualidade.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="exercise-box">
+                        <div class="exercise-header">
+                            <i class="fas fa-dumbbell"></i>
+                            <h4>Seu Primeiro Desafio Criativo: A Maçã Mágica!</h4>
+                        </div>
+                        <p>Para começar a aquecer os motores da sua criatividade, vamos fazer um pequeno exercício. Pense em uma imagem simples, como uma <strong>"maçã vermelha"</strong>. Agora, tente descrevê-la com o máximo de detalhes possível:</p>
+                        <div class="prompt-example">
+                            <div class="prompt-box">
+                                <div class="prompt-header">
+                                    <span>Exemplo de Descrição Detalhada</span>
+                                    <button class="copy-btn" onclick="copyToClipboard(this)">
+                                        <i class="fas fa-copy"></i>
+                                    </button>
+                                </div>
+                                <div class="prompt-content">Uma maçã vermelha brilhante, com algumas gotas de orvalho na casca, repousando sobre uma folha verde escura, sob a luz suave do sol da manhã.</div>
+                            </div>
+                        </div>
+                        <p>Anote essa descrição. Vamos usá-la mais adiante para ver como a IA interpreta suas palavras!</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Chapter 1: Setup -->
+            <section id="setup" class="chapter">
+                <div class="chapter-header">
+                    <div class="chapter-number">1</div>
+                    <div class="chapter-info">
+                        <h2 class="chapter-title">Montando Seu Primeiro Estúdio</h2>
+                        <p class="chapter-subtitle">Configuração e Geração no ComfyUI</p>
+                    </div>
+                </div>
+                
+                <div class="chapter-content">
+                    <p>Agora que você já sabe o que é um prompt e a importância de se comunicar bem com a IA, é hora de colocar a mão na massa! Neste capítulo, vamos montar nosso "estúdio de arte digital" no ComfyUI e fazer nossa primeira geração de imagem.</p>
+
+                    <div class="step-by-step">
+                        <h3><i class="fas fa-download"></i> Instalação Descomplicada</h3>
+                        
+                        <div class="steps">
+                            <div class="step">
+                                <div class="step-number">1</div>
+                                <div class="step-content">
+                                    <h4>Baixe o ComfyUI</h4>
+                                    <p>Acesse o repositório oficial do ComfyUI no GitHub e procure pela seção de <em>releases</em>. Baixe a versão mais recente para o seu sistema operacional.</p>
+                                    <a href="https://github.com/comfyanonymous/ComfyUI/releases" target="_blank" class="external-link">
+                                        <i class="fas fa-external-link-alt"></i>
+                                        ComfyUI GitHub Releases
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="step">
+                                <div class="step-number">2</div>
+                                <div class="step-content">
+                                    <h4>Instale o Modelo SDXL</h4>
+                                    <p>Baixe o modelo base do SDXL (geralmente chamado de <code>sd_xl_base_1.0.safetensors</code>) e coloque na pasta <code>ComfyUI/models/checkpoints</code>.</p>
+                                    <a href="https://civitai.com/models/101055/sd-xl" target="_blank" class="external-link">
+                                        <i class="fas fa-external-link-alt"></i>
+                                        Baixar SDXL Base Model
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="step">
+                                <div class="step-number">3</div>
+                                <div class="step-content">
+                                    <h4>Abra o ComfyUI</h4>
+                                    <p>Execute o comando <code>python main.py</code> no terminal ou use o Google Colab para testes rápidos.</p>
+                                    <div class="code-block">
+                                        <div class="code-header">
+                                            <span>Terminal</span>
+                                            <button class="copy-btn" onclick="copyToClipboard(this)">
+                                                <i class="fas fa-copy"></i>
+                                            </button>
+                                        </div>
+                                        <div class="code-content">python main.py</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="nodes-explanation">
+                        <h3><i class="fas fa-puzzle-piece"></i> Os Blocos Fundamentais (Nós)</h3>
+                        
+                        <div class="nodes-grid">
+                            <div class="node-card">
+                                <div class="node-icon">
+                                    <i class="fas fa-database"></i>
+                                </div>
+                                <h4>Load Checkpoint</h4>
+                                <p><strong>O que é:</strong> O modelo de IA (SDXL) que fará a geração.</p>
+                                <p><strong>Para que serve:</strong> Informar ao ComfyUI qual modelo usar.</p>
+                            </div>
+
+                            <div class="node-card">
+                                <div class="node-icon">
+                                    <i class="fas fa-keyboard"></i>
+                                </div>
+                                <h4>CLIP Text Encode</h4>
+                                <p><strong>O que é:</strong> Onde você escreve suas instruções para a IA.</p>
+                                <p><strong>Para que serve:</strong> Converter seu texto em "informação visual" para o modelo.</p>
+                            </div>
+
+                            <div class="node-card">
+                                <div class="node-icon">
+                                    <i class="fas fa-cog"></i>
+                                </div>
+                                <h4>KSampler</h4>
+                                <p><strong>O que é:</strong> O algoritmo que gera a imagem a partir das instruções.</p>
+                                <p><strong>Para que serve:</strong> Transformar as informações em pixels visuais.</p>
+                            </div>
+
+                            <div class="node-card">
+                                <div class="node-icon">
+                                    <i class="fas fa-save"></i>
+                                </div>
+                                <h4>Save Image</h4>
+                                <p><strong>O que é:</strong> O nó que finaliza o processo.</p>
+                                <p><strong>Para que serve:</strong> Guardar sua obra de arte!</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="first-generation">
+                        <h3><i class="fas fa-magic"></i> Seu Primeiro Desenho Mágico</h3>
+                        
+                        <div class="prompt-example">
+                            <div class="prompt-box positive">
+                                <div class="prompt-header">
+                                    <span><i class="fas fa-plus"></i> Prompt Positivo</span>
+                                    <button class="copy-btn" onclick="copyToClipboard(this)">
+                                        <i class="fas fa-copy"></i>
+                                    </button>
+                                </div>
+                                <div class="prompt-content">um gato fofo</div>
+                            </div>
+                        </div>
+
+                        <div class="prompt-example">
+                            <div class="prompt-box negative">
+                                <div class="prompt-header">
+                                    <span><i class="fas fa-minus"></i> Prompt Negativo</span>
+                                    <button class="copy-btn" onclick="copyToClipboard(this)">
+                                        <i class="fas fa-copy"></i>
+                                    </button>
+                                </div>
+                                <div class="prompt-content">blurry</div>
+                            </div>
+                        </div>
+
+                        <div class="tip-box">
+                            <div class="tip-icon">
+                                <i class="fas fa-lightbulb"></i>
+                            </div>
+                            <div class="tip-content">
+                                <h4>Quiz Interativo</h4>
+                                <p>O que acontece se você adicionar a palavra "azul" ao prompt positivo? <strong>Resposta:</strong> Um gato azul! Experimente e veja com seus próprios olhos. A IA é bem literal!</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="lab-section">
+                        <h3><i class="fas fa-flask"></i> Laboratório Interativo: Explorando Variações com a Seed</h3>
+                        
+                        <p>A <code>seed</code> é como a "receita secreta" que a IA usa para começar a gerar a imagem. Cada número de seed resultará em uma imagem ligeiramente diferente, mesmo com o mesmo prompt.</p>
+                        
+                        <div class="seed-examples">
+                            <div class="seed-example">
+                                <h4>Seed: 1234</h4>
+                                <p>Primeira variação do gato fofo</p>
+                            </div>
+                            <div class="seed-example">
+                                <h4>Seed: 5678</h4>
+                                <p>Segunda variação do gato fofo</p>
+                            </div>
+                            <div class="seed-example">
+                                <h4>Seed: -1 (Aleatória)</h4>
+                                <p>Sempre uma nova surpresa!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Chapter 3: Quality -->
+            <section id="quality" class="chapter">
+                <div class="chapter-header">
+                    <div class="chapter-number">3</div>
+                    <div class="chapter-info">
+                        <h2 class="chapter-title">Refinando a Obra</h2>
+                        <p class="chapter-subtitle">Qualidade e Realismo em Suas Imagens</p>
+                    </div>
+                </div>
+                
+                <div class="chapter-content">
+                    <p>Com seu estúdio montado e a estrutura do prompt dominada, é hora de dar um passo além e transformar suas criações em verdadeiras obras de arte! Neste capítulo, vamos aprender a usar "temperos" especiais para garantir que suas imagens tenham a mais alta <strong>qualidade</strong> e o máximo <strong>realismo</strong>.</p>
+
+                    <div class="info-cards">
+                        <div class="info-card">
+                            <div class="card-icon">
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <h3>Quality Boosters</h3>
+                            <p>Palavras-chave que instruem a IA a priorizar a qualidade máxima na geração da imagem.</p>
+                        </div>
+
+                        <div class="info-card">
+                            <div class="card-icon">
+                                <i class="fas fa-sliders-h"></i>
+                            </div>
+                            <h3>Sistema de Pesos</h3>
+                            <p>Controle a intensidade de cada elemento usando números entre parênteses.</p>
+                        </div>
+
+                        <div class="info-card">
+                            <div class="card-icon">
+                                <i class="fas fa-camera-retro"></i>
+                            </div>
+                            <h3>Triggers Fotorrealistas</h3>
+                            <p>Termos específicos que ativam o modo fotorrealista da IA.</p>
+                        </div>
+                    </div>
+
+                    <div class="prompt-example">
+                        <div class="prompt-box professional">
+                            <div class="prompt-header">
+                                <span><i class="fas fa-gem"></i> Quality Boosters Básicos</span>
+                                <button class="copy-btn" onclick="copyToClipboard(this)">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                            </div>
+                            <div class="prompt-content">(masterpiece:1.3), (best quality:1.2), ultra detailed, high quality</div>
+                        </div>
+                    </div>
+
+                    <div class="prompt-example">
+                        <div class="prompt-box professional">
+                            <div class="prompt-header">
+                                <span><i class="fas fa-camera"></i> Triggers Fotorrealistas</span>
+                                <button class="copy-btn" onclick="copyToClipboard(this)">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                            </div>
+                            <div class="prompt-content">RAW photo, (photorealistic:1.4), (hyperrealistic:1.2), unedited photograph</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Chapter 4: Camera -->
+            <section id="camera" class="chapter">
+                <div class="chapter-header">
+                    <div class="chapter-number">4</div>
+                    <div class="chapter-info">
+                        <h2 class="chapter-title">A Visão do Artista</h2>
+                        <p class="chapter-subtitle">Câmera e Composição para Iniciantes</p>
+                    </div>
+                </div>
+                
+                <div class="chapter-content">
+                    <p>Agora que suas imagens estão com qualidade e realismo de alto nível, vamos aprender a <strong>controlar a "visão" da sua câmera virtual</strong> e a <strong>organizar os elementos na cena</strong> para criar composições visualmente atraentes.</p>
+
+                    <div class="nodes-grid">
+                        <div class="node-card">
+                            <div class="node-icon">
+                                <i class="fas fa-camera"></i>
+                            </div>
+                            <h4>Lentes</h4>
+                            <p><strong>24mm:</strong> Grande angular para paisagens</p>
+                            <p><strong>50mm:</strong> Perspectiva natural</p>
+                            <p><strong>85mm:</strong> Ideal para retratos</p>
+                        </div>
+
+                        <div class="node-card">
+                            <div class="node-icon">
+                                <i class="fas fa-eye"></i>
+                            </div>
+                            <h4>Profundidade de Campo</h4>
+                            <p><strong>f/1.4:</strong> Bokeh intenso</p>
+                            <p><strong>f/2.8:</strong> Equilíbrio</p>
+                            <p><strong>f/5.6:</strong> Maior nitidez</p>
+                        </div>
+
+                        <div class="node-card">
+                            <div class="node-icon">
+                                <i class="fas fa-th"></i>
+                            </div>
+                            <h4>Composição</h4>
+                            <p><strong>Rule of thirds:</strong> Pontos de interesse nos cruzamentos</p>
+                            <p><strong>Leading lines:</strong> Linhas que guiam o olhar</p>
+                        </div>
+
+                        <div class="node-card">
+                            <div class="node-icon">
+                                <i class="fas fa-angle-up"></i>
+                            </div>
+                            <h4>Ângulos</h4>
+                            <p><strong>Low angle:</strong> Sujeito mais imponente</p>
+                            <p><strong>High angle:</strong> Sujeito mais vulnerável</p>
+                        </div>
+                    </div>
+
+                    <div class="prompt-example">
+                        <div class="prompt-box professional">
+                            <div class="prompt-header">
+                                <span><i class="fas fa-camera"></i> Setup Profissional de Câmera</span>
+                                <button class="copy-btn" onclick="copyToClipboard(this)">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                            </div>
+                            <div class="prompt-content">shot on Canon EOS R5, 85mm RF lens, f/1.4, ISO 100, shallow depth of field, rule of thirds</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Chapter 5: Lighting -->
+            <section id="lighting" class="chapter">
+                <div class="chapter-header">
+                    <div class="chapter-number">5</div>
+                    <div class="chapter-info">
+                        <h2 class="chapter-title">Pintando com a Luz</h2>
+                        <p class="chapter-subtitle">Dominando a Iluminação Profissional</p>
+                    </div>
+                </div>
+                
+                <div class="chapter-content">
+                    <p>Com a câmera e a composição sob controle, é hora de adicionar um dos elementos mais poderosos para criar atmosfera e emoção em suas imagens: a <strong>iluminação</strong>.</p>
+
+                    <div class="info-cards">
+                        <div class="info-card">
+                            <div class="card-icon">
+                                <i class="fas fa-sun"></i>
+                            </div>
+                            <h3>Luz Natural</h3>
+                            <p><strong>Golden hour:</strong> Luz dourada e suave<br>
+                            <strong>Blue hour:</strong> Luz azulada e misteriosa<br>
+                            <strong>Overcast:</strong> Luz difusa e uniforme</p>
+                        </div>
+
+                        <div class="info-card">
+                            <div class="card-icon">
+                                <i class="fas fa-lightbulb"></i>
+                            </div>
+                            <h3>Iluminação de Estúdio</h3>
+                            <p><strong>Three-point lighting:</strong> Setup clássico<br>
+                            <strong>Rembrandt lighting:</strong> Triângulo na bochecha<br>
+                            <strong>Butterfly lighting:</strong> Sombra sob o nariz</p>
+                        </div>
+
+                        <div class="info-card">
+                            <div class="card-icon">
+                                <i class="fas fa-adjust"></i>
+                            </div>
+                            <h3>Qualidade da Luz</h3>
+                            <p><strong>Soft lighting:</strong> Sombras suaves<br>
+                            <strong>Hard lighting:</strong> Sombras definidas<br>
+                            <strong>Dramatic lighting:</strong> Alto contraste</p>
+                        </div>
+                    </div>
+
+                    <div class="prompt-example">
+                        <div class="prompt-box professional">
+                            <div class="prompt-header">
+                                <span><i class="fas fa-lightbulb"></i> Setup de Iluminação Profissional</span>
+                                <button class="copy-btn" onclick="copyToClipboard(this)">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                            </div>
+                            <div class="prompt-content">professional studio lighting, three-point lighting setup, key light at 45 degrees, (soft lighting:1.2), golden hour lighting</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Chapter 6: Facial Details -->
+            <section id="facial" class="chapter">
+                <div class="chapter-header">
+                    <div class="chapter-number">6</div>
+                    <div class="chapter-info">
+                        <h2 class="chapter-title">A Expressão da Alma</h2>
+                        <p class="chapter-subtitle">Detalhamento Facial e Corporal</p>
+                    </div>
+                </div>
+                
+                <div class="chapter-content">
+                    <p>Com a luz e a composição dominadas, é hora de dar vida aos seus personagens! Neste capítulo, vamos explorar como controlar com precisão as <strong>características faciais e corporais</strong>.</p>
+
+                    <div class="nodes-grid">
+                        <div class="node-card">
+                            <div class="node-icon">
+                                <i class="fas fa-eye"></i>
+                            </div>
+                            <h4>Detalhamento de Olhos</h4>
+                            <p><strong>(detailed eyes:1.3):</strong> Aumenta o detalhe<br>
+                            <strong>sparkling eyes:</strong> Brilho cativante<br>
+                            <strong>eye contact:</strong> Olhando para a câmera</p>
+                        </div>
+
+                        <div class="node-card">
+                            <div class="node-icon">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <h4>Textura da Pele</h4>
+                            <p><strong>detailed skin texture:</strong> Textura realista<br>
+                            <strong>skin pores:</strong> Poros visíveis<br>
+                            <strong>freckles:</strong> Sardas naturais</p>
+                        </div>
+
+                        <div class="node-card">
+                            <div class="node-icon">
+                                <i class="fas fa-smile"></i>
+                            </div>
+                            <h4>Expressões</h4>
+                            <p><strong>subtle smile:</strong> Sorriso discreto<br>
+                            <strong>genuine smile:</strong> Sorriso verdadeiro<br>
+                            <strong>thoughtful:</strong> Expressão pensativa</p>
+                        </div>
+
+                        <div class="node-card">
+                            <div class="node-icon">
+                                <i class="fas fa-hand-paper"></i>
+                            </div>
+                            <h4>Anatomia</h4>
+                            <p>Use prompts negativos para evitar:<br>
+                            <strong>bad hands, extra fingers, deformed</strong></p>
+                        </div>
+                    </div>
+
+                    <div class="prompt-example">
+                        <div class="prompt-box professional">
+                            <div class="prompt-header">
+                                <span><i class="fas fa-user"></i> Retrato com Detalhes Faciais</span>
+                                <button class="copy-btn" onclick="copyToClipboard(this)">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                            </div>
+                            <div class="prompt-content">portrait of woman, (beautiful detailed eyes:1.4), sparkling eyes, detailed skin texture, freckles, subtle smile, eye contact</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Chapter 7: Negative Prompts -->
+            <section id="negative" class="chapter">
+                <div class="chapter-header">
+                    <div class="chapter-number">7</div>
+                    <div class="chapter-info">
+                        <h2 class="chapter-title">O Poder do "Não"</h2>
+                        <p class="chapter-subtitle">Dominando os Prompts Negativos</p>
+                    </div>
+                </div>
+                
+                <div class="chapter-content">
+                    <p>Até agora, focamos em dizer à IA o que <em>queremos</em> em nossas imagens. Mas tão importante quanto isso é dizer o que <em>não queremos</em>! Os prompts negativos funcionam como um "filtro de sujeira" para suas criações.</p>
+
+                    <div class="analogy-box">
+                        <div class="analogy-icon">
+                            <i class="fas fa-filter"></i>
+                        </div>
+                        <div class="analogy-content">
+                            <h4>Analogia do Filtro de Sujeira</h4>
+                            <p>Pense no prompt negativo como um filtro de ar. Ele não cria o ar fresco, mas remove as impurezas, poeira e alérgenos, deixando o ar (sua imagem) mais limpo e puro.</p>
+                        </div>
+                    </div>
+
+                    <div class="info-cards">
+                        <div class="info-card">
+                            <div class="card-icon">
+                                <i class="fas fa-gem"></i>
+                            </div>
+                            <h3>Qualidade</h3>
+                            <p>Remove artefatos de baixa qualidade:<br>
+                            <code>blurry, low quality, jpeg artifacts</code></p>
+                        </div>
+
+                        <div class="info-card">
+                            <div class="card-icon">
+                                <i class="fas fa-user-injured"></i>
+                            </div>
+                            <h3>Anatomia</h3>
+                            <p>Corrige problemas anatômicos:<br>
+                            <code>bad hands, extra fingers, deformed</code></p>
+                        </div>
+
+                        <div class="info-card">
+                            <div class="card-icon">
+                                <i class="fas fa-ban"></i>
+                            </div>
+                            <h3>Elementos Indesejados</h3>
+                            <p>Remove elementos não desejados:<br>
+                            <code>watermark, text, signature</code></p>
+                        </div>
+                    </div>
+
+                    <div class="prompt-example">
+                        <div class="prompt-box negative">
+                            <div class="prompt-header">
+                                <span><i class="fas fa-ban"></i> Template Profissional de Prompt Negativo</span>
+                                <button class="copy-btn" onclick="copyToClipboard(this)">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                            </div>
+                            <div class="prompt-content">(worst quality:1.4), (low quality:1.4), blurry, bad anatomy, bad hands, missing fingers, extra digit, deformed, ugly, watermark, signature, text</div>
+                        </div>
+                    </div>
+
+                    <div class="tip-box">
+                        <div class="tip-icon">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <div class="tip-content">
+                            <h4>Top 5 para Iniciantes</h4>
+                            <p>Se você está começando, foque nestes cinco termos negativos: <strong>blurry, lowres, bad hands, ugly, deformed</strong></p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Chapter 8: Style -->
+            <section id="style" class="chapter">
+                <div class="chapter-header">
+                    <div class="chapter-number">8</div>
+                    <div class="chapter-info">
+                        <h2 class="chapter-title">A Assinatura do Artista</h2>
+                        <p class="chapter-subtitle">Controle de Estilo e Referências</p>
+                    </div>
+                </div>
+                
+                <div class="chapter-content">
+                    <p>Com as bases da geração de imagens sólidas, é hora de adicionar sua <strong>assinatura artística</strong>! Vamos aprender como usar referências de fotógrafos famosos, marcas de câmera e emulações de filme.</p>
+
+                    <div class="nodes-grid">
+                        <div class="node-card">
+                            <div class="node-icon">
+                                <i class="fas fa-user-tie"></i>
+                            </div>
+                            <h4>Fotógrafos Famosos</h4>
+                            <p><strong>Annie Leibovitz style:</strong> Retratos dramáticos<br>
+                            <strong>Peter Lindbergh style:</strong> P&B emotivo<br>
+                            <strong>Steve McCurry style:</strong> Cores intensas</p>
+                        </div>
+
+                        <div class="node-card">
+                            <div class="node-icon">
+                                <i class="fas fa-camera"></i>
+                            </div>
+                            <h4>Marcas de Câmera</h4>
+                            <p><strong>shot on Hasselblad:</strong> Médio formato<br>
+                            <strong>shot on Leica:</strong> Cores naturais<br>
+                            <strong>shot on Canon:</strong> Tons quentes</p>
+                        </div>
+
+                        <div class="node-card">
+                            <div class="node-icon">
+                                <i class="fas fa-film"></i>
+                            </div>
+                            <h4>Emulação de Filme</h4>
+                            <p><strong>Kodak Portra 400:</strong> Tons naturais<br>
+                            <strong>Fuji Velvia 50:</strong> Cores saturadas<br>
+                            <strong>Cinestill 800T:</strong> Look cinematográfico</p>
+                        </div>
+
+                        <div class="node-card">
+                            <div class="node-icon">
+                                <i class="fas fa-palette"></i>
+                            </div>
+                            <h4>Combinações</h4>
+                            <p>Combine estilos para resultados únicos:<br>
+                            <strong>Annie Leibovitz + Hasselblad + Portra</strong></p>
+                        </div>
+                    </div>
+
+                    <div class="prompt-example">
+                        <div class="prompt-box professional">
+                            <div class="prompt-header">
+                                <span><i class="fas fa-palette"></i> Combinação de Estilo Profissional</span>
+                                <button class="copy-btn" onclick="copyToClipboard(this)">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                            </div>
+                            <div class="prompt-content">portrait, Annie Leibovitz style, shot on Hasselblad, Kodak Portra 400, dramatic lighting, professional studio</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Chapter 9: Advanced -->
+            <section id="advanced" class="chapter">
+                <div class="chapter-header">
+                    <div class="chapter-number">9</div>
+                    <div class="chapter-info">
+                        <h2 class="chapter-title">Além do Básico</h2>
+                        <p class="chapter-subtitle">Técnicas Avançadas de Controle</p>
+                    </div>
+                </div>
+                
+                <div class="chapter-content">
+                    <p>Parabéns por chegar até aqui! Você já domina os fundamentos e está pronto para explorar técnicas que levarão suas criações a um novo nível de controle e sofisticação.</p>
+
+                    <div class="info-cards">
+                        <div class="info-card">
+                            <div class="card-icon">
+                                <i class="fas fa-weight-hanging"></i>
+                            </div>
+                            <h3>Sistema de Pesos</h3>
+                            <p>Controle preciso da intensidade:<br>
+                            <code>(palavra:1.3)</code> - Aumenta 30%<br>
+                            <code>((palavra))</code> - Atalho para 1.1x</p>
+                        </div>
+
+                        <div class="info-card">
+                            <div class="card-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <h3>Prompt Scheduling</h3>
+                            <p>Mude o prompt durante a geração:<br>
+                            <code>[sketch:photorealistic:0.7]</code><br>
+                            Começa como esboço, termina realista</p>
+                        </div>
+
+                        <div class="info-card">
+                            <div class="card-icon">
+                                <i class="fas fa-pause"></i>
+                            </div>
+                            <h3>Break Technique</h3>
+                            <p>Separe conceitos distintos:<br>
+                            <code>beautiful woman BREAK detailed eyes</code><br>
+                            Processa cada grupo separadamente</p>
+                        </div>
+                    </div>
+
+                    <div class="prompt-example">
+                        <div class="prompt-box professional">
+                            <div class="prompt-header">
+                                <span><i class="fas fa-sliders-h"></i> Exemplo com Técnicas Avançadas</span>
+                                <button class="copy-btn" onclick="copyToClipboard(this)">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                            </div>
+                            <div class="prompt-content">[sketch:photorealistic:0.7], portrait of woman BREAK (sparkling eyes:1.3) BREAK professional lighting BREAK (masterpiece:1.4)</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Chapter 10: Technical -->
+            <section id="technical" class="chapter">
+                <div class="chapter-header">
+                    <div class="chapter-number">10</div>
+                    <div class="chapter-info">
+                        <h2 class="chapter-title">Os Motores da Criação</h2>
+                        <p class="chapter-subtitle">Parâmetros Técnicos no ComfyUI</p>
+                    </div>
+                </div>
+                
+                <div class="chapter-content">
+                    <p>Vamos mergulhar nos <strong>parâmetros técnicos</strong> do ComfyUI, que são como os "motores" e "controles finos" do seu estúdio de IA.</p>
+
+                    <div class="nodes-grid">
+                        <div class="node-card">
+                            <div class="node-icon">
+                                <i class="fas fa-cog"></i>
+                            </div>
+                            <h4>Samplers</h4>
+                            <p><strong>Euler A:</strong> Rápido e criativo<br>
+                            <strong>DPM++ 2M Karras:</strong> Equilibrado<br>
+                            <strong>DPM++ SDE Karras:</strong> Alta qualidade</p>
+                        </div>
+
+                        <div class="node-card">
+                            <div class="node-icon">
+                                <i class="fas fa-step-forward"></i>
+                            </div>
+                            <h4>Steps (Passos)</h4>
+                            <p><strong>15-25:</strong> Rápido, menos detalhes<br>
+                            <strong>30-40:</strong> Equilibrado para SDXL<br>
+                            <strong>50+:</strong> Máxima qualidade</p>
+                        </div>
+
+                        <div class="node-card">
+                            <div class="node-icon">
+                                <i class="fas fa-compass"></i>
+                            </div>
+                            <h4>CFG Scale</h4>
+                            <p><strong>3-6:</strong> Mais criatividade<br>
+                            <strong>7-10:</strong> Equilibrado<br>
+                            <strong>11-15:</strong> Segue prompt rigidamente</p>
+                        </div>
+
+                        <div class="node-card">
+                            <div class="node-icon">
+                                <i class="fas fa-seedling"></i>
+                            </div>
+                            <h4>Seed</h4>
+                            <p><strong>-1:</strong> Aleatória (nova a cada vez)<br>
+                            <strong>Número fixo:</strong> Reproduzível<br>
+                            Use para fazer variações</p>
+                        </div>
+                    </div>
+
+                    <div class="lab-section">
+                        <h3><i class="fas fa-flask"></i> Laboratório de Parâmetros</h3>
+                        <p>Experimente diferentes combinações:</p>
+                        <div class="seed-examples">
+                            <div class="seed-example">
+                                <h4>Para Testes Rápidos</h4>
+                                <p>Euler A, 20 steps, CFG 7</p>
+                            </div>
+                            <div class="seed-example">
+                                <h4>Para Qualidade</h4>
+                                <p>DPM++ 2M Karras, 35 steps, CFG 8</p>
+                            </div>
+                            <div class="seed-example">
+                                <h4>Para Máxima Qualidade</h4>
+                                <p>DPM++ SDE Karras, 50 steps, CFG 7</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Chapter 11: Complementary -->
+            <section id="complementary" class="chapter">
+                <div class="chapter-header">
+                    <div class="chapter-number">11</div>
+                    <div class="chapter-info">
+                        <h2 class="chapter-title">Além do Prompt</h2>
+                        <p class="chapter-subtitle">Técnicas Complementares Avançadas</p>
+                    </div>
+                </div>
+                
+                <div class="chapter-content">
+                    <p>O universo da geração de imagens é vasto e cheio de ferramentas incríveis que podem levar suas criações a um nível ainda mais profissional.</p>
+
+                    <div class="nodes-grid">
+                        <div class="node-card">
+                            <div class="node-icon">
+                                <i class="fas fa-paint-brush"></i>
+                            </div>
+                            <h4>Inpainting</h4>
+                            <p>Repare ou modifique partes específicas de uma imagem já existente. Ideal para corrigir mãos ou remover objetos indesejados.</p>
+                        </div>
+
+                        <div class="node-card">
+                            <div class="node-icon">
+                                <i class="fas fa-expand-arrows-alt"></i>
+                            </div>
+                            <h4>Outpainting</h4>
+                            <p>Expanda uma imagem além de seus limites originais, adicionando mais contexto à cena de forma coerente.</p>
+                        </div>
+
+                        <div class="node-card">
+                            <div class="node-icon">
+                                <i class="fas fa-route"></i>
+                            </div>
+                            <h4>ControlNet</h4>
+                            <p>Guie a IA com imagens de referência visuais para controle preciso de pose, estrutura ou profundidade.</p>
+                        </div>
+
+                        <div class="node-card">
+                            <div class="node-icon">
+                                <i class="fas fa-puzzle-piece"></i>
+                            </div>
+                            <h4>LoRA</h4>
+                            <p>Pacotes de conhecimento adicionais para personagens específicos, estilos únicos ou objetos detalhados.</p>
+                        </div>
+                    </div>
+
+                    <div class="tip-box">
+                        <div class="tip-icon">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <div class="tip-content">
+                            <h4>Workflows Integrados</h4>
+                            <p>O verdadeiro poder do ComfyUI está em <strong>combinar todas essas técnicas</strong> em workflows complexos. Você pode usar prompts detalhados + ControlNet + LoRA + Inpainting para controle total!</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Chapter 12: Resources -->
+            <section id="resources" class="chapter">
+                <div class="chapter-header">
+                    <div class="chapter-number">12</div>
+                    <div class="chapter-info">
+                        <h2 class="chapter-title">Recursos e Comunidade</h2>
+                        <p class="chapter-subtitle">Continue Aprendendo e Criando!</p>
+                    </div>
+                </div>
+                
+                <div class="chapter-content">
+                    <p>Parabéns! Você chegou ao final deste guia e dominou as técnicas essenciais e avançadas de Prompt Engineering para SDXL no ComfyUI. A jornada no mundo da IA generativa é contínua e cheia de novas descobertas.</p>
+
+                    <div class="info-cards">
+                        <div class="info-card">
+                            <div class="card-icon">
+                                <i class="fab fa-reddit"></i>
+                            </div>
+                            <h3>Comunidades Reddit</h3>
+                            <p><strong>r/StableDiffusion:</strong> Comunidade geral<br>
+                            <strong>r/ComfyUI:</strong> Específico para ComfyUI<br>
+                            Compartilhe criações e tire dúvidas</p>
+                        </div>
+
+                        <div class="info-card">
+                            <div class="card-icon">
+                                <i class="fas fa-download"></i>
+                            </div>
+                            <h3>Recursos</h3>
+                            <p><strong>Civitai:</strong> Modelos e LoRAs<br>
+                            <strong>Hugging Face:</strong> Modelos oficiais<br>
+                            <strong>ComfyUI Cheatsheet:</strong> Dicas e truques</p>
+                        </div>
+
+                        <div class="info-card">
+                            <div class="card-icon">
+                                <i class="fas fa-graduation-cap"></i>
+                            </div>
+                            <h3>Continue Aprendendo</h3>
+                            <p><strong>YouTube:</strong> Tutoriais em vídeo<br>
+                            <strong>Discord:</strong> Comunidades em tempo real<br>
+                            <strong>Experimente:</strong> A prática leva à perfeição!</p>
+                        </div>
+                    </div>
+
+                    <div class="exercise-box">
+                        <div class="exercise-header">
+                            <i class="fas fa-rocket"></i>
+                            <h4>Sua Jornada Continua!</h4>
+                        </div>
+                        <p>Agora você possui o conhecimento e as ferramentas para criar imagens incríveis com SDXL no ComfyUI. Lembre-se:</p>
+                        <ul style="color: white; margin-left: 20px; margin-top: 10px;">
+                            <li><strong>Experimente:</strong> Mude um termo, ajuste um parâmetro, combine LoRAs</li>
+                            <li><strong>Compartilhe:</strong> Mostre suas criações nas comunidades</li>
+                            <li><strong>Inspire-se:</strong> Veja o trabalho de outros artistas</li>
+                            <li><strong>Divirta-se:</strong> A criatividade não tem limites!</li>
+                        </ul>
+                    </div>
+
+                    <div class="external-links" style="margin-top: 30px;">
+                        <h3 style="margin-bottom: 20px;"><i class="fas fa-link"></i> Links Úteis</h3>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                            <a href="https://github.com/comfyanonymous/ComfyUI" target="_blank" class="external-link">
+                                <i class="fab fa-github"></i> ComfyUI GitHub
+                            </a>
+                            <a href="https://civitai.com" target="_blank" class="external-link">
+                                <i class="fas fa-download"></i> Civitai - Modelos
+                            </a>
+                            <a href="https://huggingface.co" target="_blank" class="external-link">
+                                <i class="fas fa-robot"></i> Hugging Face
+                            </a>
+                            <a href="https://reddit.com/r/StableDiffusion" target="_blank" class="external-link">
+                                <i class="fab fa-reddit"></i> r/StableDiffusion
+                            </a>
+                            <a href="https://reddit.com/r/comfyui" target="_blank" class="external-link">
+                                <i class="fab fa-reddit"></i> r/ComfyUI
+                            </a>
+                            <a href="https://www.youtube.com/results?search_query=comfyui+tutorial" target="_blank" class="external-link">
+                                <i class="fab fa-youtube"></i> Tutoriais YouTube
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Chapter 2: Prompt Anatomy -->
+            <section id="prompts" class="chapter">
+                <div class="chapter-header">
+                    <div class="chapter-number">2</div>
+                    <div class="chapter-info">
+                        <h2 class="chapter-title">A Linguagem Secreta da IA</h2>
+                        <p class="chapter-subtitle">Anatomia de um Prompt Eficaz</p>
+                    </div>
+                </div>
+                
+                <div class="chapter-content">
+                    <p>Parabéns! Você já montou seu estúdio e gerou sua primeira imagem. Agora, vamos aprofundar na <strong>linguagem secreta da IA</strong>: como construir prompts que não apenas funcionam, mas que realmente comunicam sua visão com clareza e precisão.</p>
+
+                    <div class="structure-diagram">
+                        <h3><i class="fas fa-layer-group"></i> A Estrutura Mágica</h3>
+                        
+                        <div class="prompt-structure">
+                            <div class="structure-item">
+                                <div class="structure-label">Tipo de mídia</div>
+                                <div class="structure-example">RAW photo</div>
+                            </div>
+                            <div class="structure-plus">+</div>
+                            <div class="structure-item">
+                                <div class="structure-label">Sujeito</div>
+                                <div class="structure-example">portrait of woman</div>
+                            </div>
+                            <div class="structure-plus">+</div>
+                            <div class="structure-item">
+                                <div class="structure-label">Detalhes</div>
+                                <div class="structure-example">beautiful, detailed</div>
+                            </div>
+                            <div class="structure-plus">+</div>
+                            <div class="structure-item">
+                                <div class="structure-label">Ambiente</div>
+                                <div class="structure-example">sitting in cafe</div>
+                            </div>
+                            <div class="structure-plus">+</div>
+                            <div class="structure-item">
+                                <div class="structure-label">Iluminação</div>
+                                <div class="structure-example">natural lighting</div>
+                            </div>
+                            <div class="structure-plus">+</div>
+                            <div class="structure-item">
+                                <div class="structure-label">Câmera</div>
+                                <div class="structure-example">85mm lens</div>
+                            </div>
+                            <div class="structure-plus">+</div>
+                            <div class="structure-item">
+                                <div class="structure-label">Qualidade</div>
+                                <div class="structure-example">masterpiece</div>
+                            </div>
+                            <div class="structure-plus">+</div>
+                            <div class="structure-item">
+                                <div class="structure-label">Estilo</div>
+                                <div class="structure-example">photorealistic</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="prompt-example">
+                        <div class="prompt-box professional">
+                            <div class="prompt-header">
+                                <span><i class="fas fa-star"></i> Exemplo Profissional Completo</span>
+                                <button class="copy-btn" onclick="copyToClipboard(this)">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                            </div>
+                            <div class="prompt-content">RAW photo, portrait of 18yo woman, extremely beautiful, detailed facial features, sitting in cafe, natural window lighting, shot on Canon 5D, 85mm lens, (masterpiece:1.3), photorealistic, in style of Annie Leibovitz</div>
+                        </div>
+                    </div>
+
+                    <div class="comparison-section">
+                        <h3><i class="fas fa-balance-scale"></i> O Segredo da Especificidade</h3>
+                        
+                        <div class="comparison-grid">
+                            <div class="comparison-item bad">
+                                <div class="comparison-header">
+                                    <i class="fas fa-times"></i>
+                                    <span>Prompt Vago</span>
+                                </div>
+                                <div class="prompt-box">
+                                    <div class="prompt-content">A sorceress</div>
+                                </div>
+                                <p>A IA terá que "adivinhar" muitos detalhes</p>
+                            </div>
+
+                            <div class="comparison-item good">
+                                <div class="comparison-header">
+                                    <i class="fas fa-check"></i>
+                                    <span>Prompt Específico</span>
+                                </div>
+                                <div class="prompt-box">
+                                    <div class="prompt-header">
+                                        <button class="copy-btn" onclick="copyToClipboard(this)">
+                                            <i class="fas fa-copy"></i>
+                                        </button>
+                                    </div>
+                                    <div class="prompt-content">a beautiful and powerful mysterious sorceress, smile, sitting on a rock, lightning magic, hat, detailed leather clothing with gemstones, dress, castle background</div>
+                                </div>
+                                <p>Cada detalhe direciona a IA para a imagem exata</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="exercise-box">
+                        <div class="exercise-header">
+                            <i class="fas fa-dumbbell"></i>
+                            <h4>Exercício Prático: Construindo o Prompt da Sua Maçã</h4>
+                        </div>
+                        <p>Lembra da sua maçã mágica do Capítulo 0? Agora é a hora de aplicar o que aprendemos!</p>
+                        <div class="prompt-example">
+                            <div class="prompt-box">
+                                <div class="prompt-header">
+                                    <span>Exemplo Estruturado da Maçã</span>
+                                    <button class="copy-btn" onclick="copyToClipboard(this)">
+                                        <i class="fas fa-copy"></i>
+                                    </button>
+                                </div>
+                                <div class="prompt-content">RAW photo, a red apple, detailed, with water drops, on a wooden table, natural light, (masterpiece:1.2), photorealistic</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Add more chapters following the same pattern... -->
+            
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Guia Prompt Engineering</h3>
+                    <p>Seu manual definitivo para criar imagens incríveis com IA</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Links Úteis</h4>
+                    <ul>
+                        <li><a href="https://github.com/comfyanonymous/ComfyUI" target="_blank">ComfyUI GitHub</a></li>
+                        <li><a href="https://civitai.com" target="_blank">Civitai</a></li>
+                        <li><a href="https://huggingface.co" target="_blank">Hugging Face</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Comunidade</h4>
+                    <ul>
+                        <li><a href="https://reddit.com/r/StableDiffusion" target="_blank">r/StableDiffusion</a></li>
+                        <li><a href="https://reddit.com/r/comfyui" target="_blank">r/ComfyUI</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Guia Prompt Engineering. Criado com ❤️ para a comunidade de IA.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
